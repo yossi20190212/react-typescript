@@ -1,0 +1,29 @@
+@import url(./asset/reset.scss);
+
+.topHeader {
+    background-color: rgba(#333, 0.1);
+    padding: 20px;
+    display: flex;
+
+    .navList {
+        height: 100%;
+    }
+
+    .navItem a {
+        display: inline-block;
+        color: #fff;
+        font-size: 18px;
+        font-weight: 700;
+        padding: 0 24px;
+    }
+}
+
+input,textarea {
+    border: 1px solid #333;
+}
+button{
+    padding: 8px 24px;
+    border-radius: 8px;
+    background-color: skyblue;
+    color: #fff;
+}
