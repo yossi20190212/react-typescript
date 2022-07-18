@@ -13,7 +13,6 @@ const App = () => {
   const title: string = 'TypeScript React !!'
   return (
     <div id="main">
-      
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<TopPage />} />
