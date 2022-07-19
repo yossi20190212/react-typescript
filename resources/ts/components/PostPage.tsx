@@ -48,8 +48,7 @@ export const PostPage: () => JSX.Element = () => {
   }
 
   function inputData(e: React.ChangeEvent<HTMLInputElement>) {
-    console.log(e.target.value);
-
+    // console.log(e.target.value);
     const key = e.target.name;
     const value = e.target.value;
     if (key === "title" || key === "body") {

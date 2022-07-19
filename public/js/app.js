@@ -2518,7 +2518,7 @@ var PostPage = function PostPage() {
   }
 
   function inputData(e) {
-    console.log(e.target.value);
+    // console.log(e.target.value);
     var key = e.target.name;
     var value = e.target.value;
 
