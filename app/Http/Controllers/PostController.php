@@ -69,8 +69,7 @@ class PostController extends Controller
       $post -> title = $request -> title;
       $post -> body = $request -> body;
       $post -> save();
-      $posts = Post::all();
-      return $posts;
+      return $post;
     }
 
     /**

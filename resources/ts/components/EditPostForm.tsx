@@ -1,68 +1,59 @@
 import React, { useState, useEffect } from "react"
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
+
 import axios from "axios";
 
-import { PostType } from "../types/PostType";
 import { FormType } from "../types/FromType";
 import PostForm from "./PostForm";
 
 export default function EditPostForm() {
   let params = useParams();
+  let nav = useNavigate();
 
-  const [posts, setPosts] = useState<PostType[]>([]);
-  const [formData, setFormData] = useState<FormType>({
-    title: '',
-    body: ''
-  })
+  const [editData, setEditData] = useState<FormType>({ title: '', body: '' });
 
-  function createPost() {
-    if (formData.title === "" || formData.body === "") {
-      alert('入力してください')
-      return false;
-    }
+  useEffect(() => {
+    getEditData();
+  }, [])
+
+  function getEditData() {
     axios
-      .post('/api/posts/create', {
-        title: formData.title,
-        body: formData.body
+      .post('/api/posts/edit', {
+        id: params.id
       })
       .then(res => {
-        setPosts(res.data)
-        setFormData({
-          title: "",
-          body: ""
-        });
+        setEditData(res.data);
       })
   }
 
-  useEffect(() => {
-    getPostData();
-  }, [])
-
-  function getPostData() {
+  function upDataPost() {
     axios
-      .get('/api/posts')
+      .post('/api/posts/update', {
+        id: params.id,
+        title: editData.title,
+        body: editData.body
+      })
       .then(res => {
-        setPosts(res.data);
+        setEditData(res.data);
+        nav('/posts')
       })
   }
 
   function inputData(e: React.ChangeEvent<HTMLInputElement>) {
-    console.log(e.target.value);
-
     const key = e.target.name;
     const value = e.target.value;
     if (key === "title" || key === "body") {
-      formData[key] = value;
+      editData[key] = value;
     }
-    const data = Object.assign({}, formData);
-    setFormData(data);
+    const data = Object.assign({}, editData);
+    setEditData(data);
   }
 
   return (
     <div>
       {`ID:${params.id}`}
       <h1>EDIT PAGE</h1>
-      <PostForm inputData={inputData} createPost={createPost} formData={formData} />
+      <PostForm inputData={inputData} btnFnc={upDataPost} data={editData} />
     </div>
   )
 };

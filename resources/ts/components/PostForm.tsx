@@ -5,18 +5,18 @@ import { FormType } from "../types/FromType";
 export default function PostForm(props:
   {
     inputData: (e: React.ChangeEvent<HTMLInputElement>) => void,
-    createPost: () => void,
-    formData: FormType
+    btnFnc: () => void,
+    data: FormType
   }) {
-  const { inputData, createPost, formData } = props;
+  const { inputData, btnFnc, data } = props;
   return (
     <form className="postForm">
-      <input type="text" name="title" onChange={inputData} value={formData.title} />
-      <p>{formData.title}</p>
-      <input type="text" name="body" onChange={inputData} value={formData.body} />
-      <p>{formData.body}</p>
-      <input type="file" name="file" id="" />
-      <button type="button" onClick={createPost}>投稿する</button>
+      <input type="text" name="title" onChange={inputData} value={data.title} />
+      <p>{data.title}</p>
+      <input type="text" name="body" onChange={inputData} value={data.body} />
+      <p>{data.body}</p>
+      {/* <input type="file" name="file" id="" /> */}
+      <button type="button" onClick={btnFnc}>投稿する</button>
     </form>
   )
 };

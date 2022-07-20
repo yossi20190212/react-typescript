@@ -18,8 +18,7 @@ export const PostPage: () => JSX.Element = () => {
 
   function createPost() {
     if (formData.title === "" || formData.body === "") {
-      alert('入力してください')
-      return false;
+      return;
     }
     axios
       .post('/api/posts/create', {
@@ -72,7 +71,7 @@ export const PostPage: () => JSX.Element = () => {
     <React.Fragment>
       <h1>PostPage</h1>
       <PostList posts={posts} postDelete={postDelete} />
-      <PostForm inputData={inputData} createPost={createPost} formData={formData} />
+      <PostForm inputData={inputData} btnFnc={createPost} data={formData} />
     </React.Fragment>
   )
 }
