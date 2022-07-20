@@ -25,15 +25,8 @@ export default function PostForm(props:
       <p>{data.body}</p>
       {/* <input type="file" name="file" id="" /> */}
       {
-        match === '/posts' ?
-          <button type="button" onClick={btnFnc}>投稿する</button> :
-          ""
-      }
-      {
-        match === '/posts/edit/:id' ?
-          <button type="button" onClick={btnFnc}>更新する</button> :
-          ""
-      }
+        match === '/posts' ? <button type="button" onClick={btnFnc}>投稿する</button> : "" }
+      { match === '/posts/edit/:id' ? <button type="button" onClick={btnFnc}>更新する</button> : "" }
     </form>
   )
 };
